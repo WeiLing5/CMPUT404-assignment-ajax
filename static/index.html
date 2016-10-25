@@ -74,7 +74,8 @@ function drawCircle(context,entity) {
         var y = entity["y"];
         //moveTo(x,y);
         fillStyle = entity["colour"];
-        strokeStyle = fillStyle;
+        //strokeStyle = fillStyle;
+        strokeStyle = 'rgba(255,255,255, 1)';
         arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
         stroke();
         fill();
@@ -103,6 +104,13 @@ function clearFrame() {
 // This actually draws the frame
 function renderFrame() {
     clearFrame();
+    
+    context.fillStyle="lightgray";
+    context.fillRect(0,0, canvas.width, canvas.height);
+    
+    context.fill();
+    
+    
     for (var key in world) {
         var entity = world[key];
         drawCircle(context,prepEntity(entity));
@@ -258,15 +266,15 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue'});
+    addEntityWithoutName({'x':x,'y':y,'colour':'orange'});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red'});
+    addEntityWithoutName({'x':x,'y':y,'colour':'brown'});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
+    addEntityWithoutName({'x':x,'y':y,'colour':'red',
                           'radius':10});
 });
 
