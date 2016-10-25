@@ -76,6 +76,7 @@ def flask_post_json():
 #    '''Return something coherent here.. perhaps redirect to /static/index.html '''
 #    return flask.redirect("/static/index.html", code=302)
 
+# These fixed the index.html problems
 @app.route("/")
 def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
