@@ -93,9 +93,8 @@ def update(entity):
         myWorld.set(entity, flask_post_json())
     elif request.method =='PUT':
         updates = flask_post_json()
-        if updates != None:
-            for key in updates:
-                myWorld.update(entity, key, updates[key])
+        for key in updates:
+            myWorld.update(entity, key, updates[key])
     return flask.jsonify(myWorld.get(entity))
 
 
@@ -106,6 +105,7 @@ def world():
         return flask.jsonify(myWorld.world())
     elif request.method == 'POST':
         updates = flask_post_json()
+        # When not clicked
         if updates != None:
             for key in updates:
                 myWorld.set(entity, key, updates[key])
