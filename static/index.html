@@ -75,6 +75,7 @@ function drawCircle(context,entity) {
         //moveTo(x,y);
         fillStyle = entity["colour"];
         //strokeStyle = fillStyle;
+        //circle style
         strokeStyle = 'rgba(255,255,255, 1)';
         arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
         stroke();
@@ -105,6 +106,7 @@ function clearFrame() {
 function renderFrame() {
     clearFrame();
     
+    // Canvas background
     context.fillStyle="lightgray";
     context.fillRect(0,0, canvas.width, canvas.height);
     
