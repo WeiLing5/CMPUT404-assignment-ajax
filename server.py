@@ -71,10 +71,19 @@ def flask_post_json():
     else:
         return json.loads(request.form.keys()[0])
 
+#@app.route("/")
+#def hello():
+#    '''Return something coherent here.. perhaps redirect to /static/index.html '''
+#    return flask.redirect("/static/index.html", code=302)
+
 @app.route("/")
 def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
-    return flask.redirect("/static/index.html", code=302)
+    return app.send_static_file("index.html")
+
+@app.route("/json2.js", methods=['GET'])
+def json2():
+    return app.send_static_file("json2.js")
 
 @app.route("/entity/<entity>", methods=['POST','PUT'])
 def update(entity):
@@ -83,8 +92,9 @@ def update(entity):
         myWorld.set(entity, flask_post_json())
     elif request.method =='PUT':
         updates = flask_post_json()
-        for key in updates:
-            myWorld.update(entity, key, updates[key])
+        if updates != None:
+            for key in updates:
+                myWorld.update(entity, key, updates[key])
     return flask.jsonify(myWorld.get(entity))
 
 
